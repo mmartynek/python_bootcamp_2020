@@ -7,22 +7,65 @@
 #The player choices are in the form of a string for each round of "R", "P", or "S" (rock, paper, or scissors) separated by "\n"
 
 #The file2List function is designed to take the data files from player 1 and player 2 and convert them to a list data structure.
-def file2List():
 
-    pass
+def file2List():
+	player_1 = open("player1Choices.txt", "r")
+	content = player_1.read()
+	#print(content)
+
+	player_1_list = content.split("\n")
+	player_1.close()
+
+	#print(player_1_list)
+
+	player_2 = open("player2Choices.txt", "r")
+	content_2 = player_2.read()
+	#print(content)
+
+	player_2_list = content_2.split("\n")
+	player_2.close()
+
+	#print(player_2_list)
+
+	return player_1_list, player_2_list
 
 #The compareChoices function is designed to take in a choice string from player 1 and a choice string from player 2 and assess what the result of each game was.
 #If player 1 won it should return the string "P1"
 #If player 2 won it shold return the string "P2"
 #If the players tied it should return the string "tie"
-def compareChoices():
+def compareChoices(data):
+	# print data[1]
+	p1data = data[0]
+	p2data = data[1]
+	for p1, p2 in zip(p1data, p2data):
 
-    pass
+		if str(p1) == "R" and str(p2) == "S":
+			print "P1"
+		elif str(p1) == "R" and str(p2) == "P":
+			print "P2"
+		elif str(p1) == "R" and str(p2) == "R":
+			print "tie"
+		elif str(p1) == "S" and str(p2) == "S":
+			print "tie"
+		elif str(p1) == "S" and str(p2) == "P":
+			print "P1"
+		elif str(p1) == "S" and str(p2) == "R":
+			print "P2"
+		elif str(p1) == "P" and str(p2) == "P":
+			print "tie"
+		elif str(p1) == "P" and str(p2) == "R":
+			print "P1"
+		elif str(p1) == "P" and str(p2) == "S":
+			print "P2"
+
+
+	pass
 
 #You need a main function for all python scripts please use the main function to organized the other functions of this script.
 def main():
-
-    pass
+	
+	compareChoices(file2List())
+	pass
 
 if __name__ == "__main__":
     main()
